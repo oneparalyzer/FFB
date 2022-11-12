@@ -6,44 +6,44 @@
     <div class="col-md-4">
         <h1 class="display-6">Регистрация</h1>
         <form method="post" id="account">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-floating">
+            <div>
                 <label asp-for="Name" class="form-label"></label>
                 <input asp-for="Name" class="form-control" aria-required="true"/>
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <span asp-validation-for="Name"></span>
             </div>
             <div>
-                <label asp-for="Surname"></label><br />
-                <input asp-for="Surname" />
+                <label asp-for="Surname" class="form-label"></label><br />
+                <input asp-for="Surname" class="form-control"/>
                 <span asp-validation-for="Surname"></span>
             </div>
             <div>
-                <label asp-for="Login"></label><br />
-                <input asp-for="Login" />
+                <label asp-for="Login" class="form-label"></label><br />
+                <input asp-for="Login" class="form-control"/>
                 <span asp-validation-for="Login"></span>
             </div>
             <div>
-                <label asp-for="Email"></label><br />
-                <input asp-for="Email" />
+                <label asp-for="Email" class="form-label"></label><br />
+                <input asp-for="Email" class="form-control"/>
                 <span asp-validation-for="Email"></span>
             </div>
             <div>
-                <label asp-for="Age"></label><br />
-                <input asp-for="Age" />
-                <span asp-validation-for="Age"></span>
+                <label asp-for="Age" class="form-label"></label><br />
+                <input asp-for="Age" class="form-control"/>
+                <span asp-validation-for="Age" class="form-label"></span>
             </div>
             <div>
-                <label asp-for="Password"></label><br />
-                <input asp-for="Password" />
+                <label asp-for="Password" class="form-label"></label><br />
+                <input asp-for="Password" class="form-control"/>
                 <span asp-validation-for="Password"></span>
             </div>
             <div>
-                <label asp-for="PasswordConfirm"></label><br />
-                <input asp-for="PasswordConfirm" />
+                <label asp-for="PasswordConfirm" class="form-label"></label><br />
+                <input asp-for="PasswordConfirm" class="form-control"/>
                 <span asp-validation-for="PasswordConfirm"></span>
             </div>
-            <div>
-                <input type="submit" value="Регистрация" />
+            <h1></h1>
+            <div class="d-grid gap-2">
+                <input type="submit"class="btn btn-primary value="Зарегестрироваться" />
             </div>
         </form>
     </div>
