@@ -1,0 +1,40 @@
+﻿@model Film
+
+<div class="row">
+        <h1 class="display-6">Добавить фильм</h1>
+        
+        <form method="post" asp-controller="Admin" asp-action="AddFilm">
+            <div>
+                <label asp-for="FilmName" class="form-label"></label><br />
+                <input asp-for="FilmName" class="form-control"/>
+                <span asp-validation-for="FilmName"></span>
+            </div>
+            <div>
+                <label asp-for="DescriptionFilm" class="form-label"></label><br />
+                <input asp-for="DescriptionFilm" class="form-control"/>
+                <span asp-validation-for="DescriptionFilm"></span>
+            </div>
+            <div>
+                <label asp-for="YearRelease" class="form-label"></label><br />
+                <input asp-for="YearRelease" class="form-control"/>
+                <span asp-validation-for="YearRelease"></span>
+            </div>
+            <div>
+                <label asp-for="Director" class="form-label"></label><br />
+                <input asp-for="Director" class="form-control"/>
+                <span asp-validation-for="Director"></span>
+            </div>
+            <div>
+                <label asp-for="PhotoUrl" class="form-label"></label><br />
+                <input asp-for="PhotoUrl" class="form-control"/>
+                <span asp-validation-for="PhotoUrl"></span>
+            </div>
+            <h1></h1>
+            <button class="btn btn-primary">Добавить</button>     
+        </form>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
