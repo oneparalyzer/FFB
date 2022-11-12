@@ -5,8 +5,8 @@ namespace FilmFeedback.Models
     public class Login
     {
         [Required]
-        [Display(Name = "Адрес электронной почты")]
-        public string? Email { get; set; }
+        [Display(Name = "Введите логин")]
+        public string? UserName { get; set; }
 
         [Required]
         [Display(Name = "Пароль")]

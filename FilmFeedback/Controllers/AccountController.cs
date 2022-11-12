@@ -30,7 +30,7 @@ namespace FilmFeedback.Controllers
                 {
                     Name = register.Name,
                     Surname = register.Surname,
-                    Login = register.Login,
+                    UserName = register.UserName,
                     Age = register.Age,
                     Email = register.Email,
                 };
@@ -44,17 +44,19 @@ namespace FilmFeedback.Controllers
                 {
                     foreach (var error in result.Errors)
                     {
+                        
                         ModelState.AddModelError(string.Empty, error.Description);
                     }
                 }
             }
-            return View(register);
+            ModelState.Clear();
+            return View();
         }
 
         [HttpGet]
-        public IActionResult Login(string returnUrl = null)
+        public IActionResult Login()
         {
-            return View(new Login { ReturnUrl = returnUrl });
+            return View();
         }
 
         [HttpPost]
@@ -63,24 +65,18 @@ namespace FilmFeedback.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(login.Email, login.Password, login.RememberMe, false);
+                var result = await _signInManager.PasswordSignInAsync(login.UserName, login.Password, login.RememberMe, false);
                 if (result.Succeeded)
                 {
-                    if (!string.IsNullOrEmpty(login.ReturnUrl) && Url.IsLocalUrl(login.ReturnUrl))
-                    {
-                        return Redirect(login.ReturnUrl);
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
+                    return Redirect("~/Home/Index");
                 }
                 else
                 {
                     ModelState.AddModelError("", "Неправильный логин и (или) пароль");
                 }
             }
-            return View(login);
+            ModelState.Clear();
+            return View();
         }
 
         [HttpPost]
@@ -88,7 +84,7 @@ namespace FilmFeedback.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return Redirect("~/Home/Index");
         }
     }
 }

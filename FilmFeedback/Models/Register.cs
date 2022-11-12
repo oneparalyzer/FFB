@@ -14,7 +14,7 @@ namespace FilmFeedback.Models
 
         [Required]
         [Display(Name = "Логин")]
-        public string? Login { get; set; }
+        public string? UserName { get; set; }
 
         [Required]
         [Display(Name = "Адрес электронной почты")]

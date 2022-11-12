@@ -5,10 +5,10 @@
     <div class="col-md-4"></div>
     <div class="col-md-4">
         <h1 class="display-6">Регистрация</h1>
-        <form method="post" id="account">
+        <form method="post">
             <div>
                 <label asp-for="Name" class="form-label"></label>
-                <input asp-for="Name" class="form-control" aria-required="true"/>
+                <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name"></span>
             </div>
             <div>
@@ -17,9 +17,9 @@
                 <span asp-validation-for="Surname"></span>
             </div>
             <div>
-                <label asp-for="Login" class="form-label"></label><br />
-                <input asp-for="Login" class="form-control"/>
-                <span asp-validation-for="Login"></span>
+                <label asp-for="UserName" class="form-label"></label><br />
+                <input asp-for="UserName" class="form-control"/>
+                <span asp-validation-for="UserName"></span>
             </div>
             <div>
                 <label asp-for="Email" class="form-label"></label><br />
@@ -29,7 +29,7 @@
             <div>
                 <label asp-for="Age" class="form-label"></label><br />
                 <input asp-for="Age" class="form-control"/>
-                <span asp-validation-for="Age" class="form-label"></span>
+                <span asp-validation-for="Age"></span>
             </div>
             <div>
                 <label asp-for="Password" class="form-label"></label><br />
@@ -43,7 +43,7 @@
             </div>
             <h1></h1>
             <div class="d-grid gap-2">
-                <input type="submit"class="btn btn-primary value="Зарегестрироваться" />
+                <button class="btn btn-primary">Зарегестрироваться</button>
             </div>
         </form>
     </div>

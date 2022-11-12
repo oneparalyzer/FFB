@@ -1,1 +1,37 @@
-﻿
+﻿@model Login
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <h1 class="display-6">Авторизация</h1>
+        
+        <form method="post" asp-controller="Account" asp-action="Login">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div>
+                <label asp-for="UserName" class="form-label"></label><br />
+                <input asp-for="UserName" class="form-control"/>
+                <span asp-validation-for="UserName"></span>
+            </div>
+            
+            <div>
+                <label asp-for="Password" class="form-label"></label><br />
+                <input asp-for="Password" class="form-control"/>
+                <span asp-validation-for="Password"></span>
+            </div>
+            <div>
+                <label asp-for="RememberMe"></label>
+                <input asp-for="RememberMe" />
+            </div>
+            <h1></h1>
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary">Войти</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
