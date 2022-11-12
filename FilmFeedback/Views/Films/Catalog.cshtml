@@ -1,7 +1,27 @@
-﻿
+﻿@using FilmFeedback.ViewModels
+@model CatalogViewModels
 
 <div class="text-center">
 	<h1 class="display-4">Фильмы</h1>
 </div>
+
+<form method="post" asp-controller="Films" asp-action="Catalog">
+     <div>
+        <p class="form-label">Найти фильм</p>
+        <input asp-for="FilmName" class="form-control"/>
+     </div>
+     <h1></h1>
+     <div class="d-grid gap-12">
+        <button class="btn btn-primary">Найти</button>
+     </div>
+</form>
+
+<div class="row">
+	@foreach (var item in Model.Films)
+	{
+		<p>@item.FilmName</p>
+	}
+</div>
+
 
 

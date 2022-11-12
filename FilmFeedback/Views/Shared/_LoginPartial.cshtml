@@ -10,7 +10,7 @@
             <a class="nav-link text-dark" asp-controller="Admin" asp-action="Index">Панель администратора</a>
         }
         <li class="nav-item">
-            <a  class="nav-link text-dark" title="Manage">@User.Identity?.Name</a>
+            <a class="nav-link text-dark" asp-controller="Account" asp-action="Info" title="Manage">@User.Identity?.Name</a>
         </li>
         <li class="nav-item">
             <form method="post" asp-controller="Account" asp-action="Logout">

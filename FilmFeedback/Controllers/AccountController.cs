@@ -1,4 +1,5 @@
-﻿using FilmFeedback.Models;
+﻿using FilmFeedback.Data;
+using FilmFeedback.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,11 +9,13 @@ namespace FilmFeedback.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly ApplicationDbContext _context;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _context = context;
         }
 
         [HttpGet]
@@ -85,6 +88,13 @@ namespace FilmFeedback.Controllers
         {
             await _signInManager.SignOutAsync();
             return Redirect("~/Home/Index");
+        }
+
+        [HttpGet]
+        public IActionResult Info()
+        {
+            var user = _context.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
+            return View(user);
         }
     }
 }
