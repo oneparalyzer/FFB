@@ -1,0 +1,22 @@
+﻿@model Film
+
+<div class="row">
+        <h1 class="display-6">Удалить фильм</h1>
+        
+        <form method="post" asp-controller="Admin" asp-action="DeleteFilm">
+            <div>
+                <label asp-for="FilmName" class="form-label"></label><br />
+                <input asp-for="FilmName" class="form-control"/>
+                <span asp-validation-for="FilmName"></span>
+            </div>
+            
+            <h1></h1>
+            <button class="btn btn-primary">Удалить</button>     
+        </form>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

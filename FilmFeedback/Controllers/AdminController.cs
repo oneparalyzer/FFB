@@ -37,5 +37,31 @@ namespace FilmFeedback.Controllers
             ModelState.Clear();
             return View();
         }
+
+        [HttpGet]
+        public IActionResult DeleteFilm()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult DeleteFilm(Film film)
+        {
+            if (ModelState.IsValid)
+            {               
+                var DeleteFilm = _context.Films.Where(x => x.FilmName == film.FilmName).FirstOrDefault();
+                if (DeleteFilm != null)
+                {
+                    _context.Films.Remove(DeleteFilm);
+                    _context.SaveChangesAsync();
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Такого фильма нет");
+                }
+            }
+            ModelState.Clear();
+            return View();
+        }
     }
 }

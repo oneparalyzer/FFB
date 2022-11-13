@@ -6,23 +6,23 @@ namespace FilmFeedback.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Поле должно быть заполнено")]
         [Display(Name = "Введите название фильма")]
         public string? FilmName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Поле должно быть заполнено")]
         [Display(Name = "Введите описание фильма")]
         public string? DescriptionFilm { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Поле должно быть заполнено")]
         [Display(Name = "Введите год релиза фильма")]
         public int YearRelease { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Поле должно быть заполнено")]
         [Display(Name = "Введите режиссера фильма")]
         public string? Director { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Поле должно быть заполнено")]
         [Display(Name = "Введите ссылку на аватарку фильма")]
         public string? PhotoUrl { get; set; }
     }

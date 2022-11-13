@@ -5,22 +5,53 @@
 	<h1 class="display-4">Фильмы</h1>
 </div>
 
-<form method="post" asp-controller="Films" asp-action="Catalog">
-     <div>
-        <p class="form-label">Найти фильм</p>
-        <input asp-for="FilmName" class="form-control"/>
-     </div>
-     <h1></h1>
-     <div class="d-grid gap-12">
-        <button class="btn btn-primary">Найти</button>
-     </div>
-</form>
+<div class="margin">
+    <form method="post" asp-controller="Films" asp-action="Catalog">
+        <div>
+            <p class="form-label">Найти фильм</p>
+            <input asp-for="FilmName" class="form-control"/>
+        </div>
+        <h1></h1>
+        <div class="d-grid gap-12">
+            <button class="btn btn-primary">Найти</button>
+        </div>
+    </form>
+</div>
+
 
 <div class="row">
-	@foreach (var item in Model.Films)
-	{
-		<p>@item.FilmName</p>
-	}
+
+    <div class="col-md-4">
+    @for (int i = 0; i < Model.Films.Count; i+=3)
+    {
+        <p class="fs-4">@Model.Films[i].FilmName</p>
+        <img class="img-thumbnail" src="@Model.Films[i].PhotoUrl" />
+        <div class="d-grid gap-12">
+            <button class="btn btn-primary">Подробнее</button>
+        </div>
+    }
+    </div>
+    <div class="col-md-4">
+    @for (int i = 1; i < Model.Films.Count; i+=3)
+    {
+        <p class="fs-4">@Model.Films[i].FilmName</p>
+        <img class="img-thumbnail" src="@Model.Films[i].PhotoUrl" />
+        <div class="d-grid gap-12">
+            <button class="btn btn-primary">Подробнее</button>
+        </div>
+    }
+    </div>
+    <div class="col-md-4">
+    @for (int i = 2; i < Model.Films.Count; i+=3)
+    {
+        <p class="fs-4">@Model.Films[i].FilmName</p>
+        <img class="img-thumbnail" src="@Model.Films[i].PhotoUrl" />
+        <div class="d-grid gap-12">
+            <button class="btn btn-primary">Подробнее</button>
+        </div>
+    }
+    </div>
+	
 </div>
 
 
