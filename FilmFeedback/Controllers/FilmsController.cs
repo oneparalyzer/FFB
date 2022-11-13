@@ -37,6 +37,13 @@ namespace FilmFeedback.Controllers
             return View(catalogFilm);
         }
 
+        [HttpPost]
+        public IActionResult MoreDetailed(int filmId)
+        {
+            var film = _context.Films.Where(x => x.Id == filmId).FirstOrDefault();
+            return View(film);
+        }
+
         private CatalogViewModels GetFilms()
 		{
             var catalog = new CatalogViewModels();

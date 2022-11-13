@@ -7,5 +7,6 @@ namespace FilmFeedback.ViewModels
     {
         public List<Film>? Films { get; set; }
         public string? FilmName { get; set; }
+        public int filmId { get; set; }
     }
 }
