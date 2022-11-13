@@ -1,9 +1,22 @@
 ﻿@model User
 
 <div class="text-center">
-	<h1 class="display-4">@Model.UserName</h1>
-	<h1 class="display-4">@Model.Email</h1>
-	<h1 class="display-4">@Model.Name</h1>
-	<h1 class="display-4">@Model.Surname</h1>
-	<h1 class="display-4">@Model.Age</h1>
+	<h1 class="display-4">Аккаунт</h1>
+</div>
+
+<div class="row">
+	<div class="col-md-4">
+		<p class="fs-4">Имя пользователя</p>
+		<p class="fs-4">Адресс электронной почты</p>
+		<p class="fs-4">Имя</p>
+		<p class="fs-4">Фамилия</p>
+		<p class="fs-4">Возраст</p>
+	</div>
+	<div class="col-md-8">
+		<p class="fs-4">@Model.UserName</p>
+		<p class="fs-4">@Model.Email</p>
+		<p class="fs-4">@Model.Name</p>
+		<p class="fs-4">@Model.Surname</p>
+		<p class="fs-4">@Model.Age</p>
+	</div>
 </div>

@@ -1,27 +1,54 @@
-﻿@model Film
+﻿@using FilmFeedback.ViewModels
+@model MoreDetailedViewModel
 
 <div class="text-center">
-	<h1 class="display-4">@Model.FilmName</h1>
+	<h1 class="display-4">@Model.film.FilmName</h1>
 </div>
 
 
 <div class="row">
 	<div class="col-md-4">
-		<img class="img-thumbnail" src="@Model.PhotoUrl" />
+		<img class="img-thumbnail" src="@Model.film.PhotoUrl" />
 	</div>
 	<div class="col-md-8">
-		<p class="fs-4">@Model.DescriptionFilm</p>
+		<p class="fs-4">Режиссер   - @Model.film.Director</p>
+		<p class="fs-4">Год релиза - @Model.film.YearRelease</p>
 	</div>
 </div>
 
+<p class="fs-4">@Model.film.DescriptionFilm</p>
 <div class="margin"></div>
 
 <div class="row">
 	<div class="col-md-4">
 		<h1 class="display-4">Отзывы</h1>
+		<h1></h1>
+		@foreach (var item in Model.Feedbacks)
+		{
+			@if (item.FilmName == Model.film.FilmName)
+			{
+				<p class="fs-2">@item.UserName</p>
+				<p class="fs-4">@item.feedback</p>
+			}
+			
+		}
 	</div>
 	<div class="col-md-8">
 		<h1 class="display-4">Оставить отзыв</h1>
+		<form method="post" asp-controller="Films" asp-action="MoreDetailed">
+            <div>
+                <label class="form-label">Введите ваш отзыв</label>
+                <input type="text" asp-for="feedback.feedback" class="form-control"/>
+				<input type="hidden" asp-for="film.FilmName" value="@Model.film.FilmName" />
+				<input type="hidden" asp-for="film.Director" value="@Model.film.Director" />
+				<input type="hidden" asp-for="film.PhotoUrl" value="@Model.film.PhotoUrl" />
+				<input type="hidden" asp-for="film.YearRelease" value="@Model.film.YearRelease" />
+				<input type="hidden" asp-for="film.DescriptionFilm" value="@Model.film.DescriptionFilm" />
+                <span asp-validation-for="feedback.feedback"></span>
+            </div>
+            <h1></h1>
+            <button class="btn btn-primary">Создать отзыв</button>     
+        </form>
 	</div>
 </div>
 

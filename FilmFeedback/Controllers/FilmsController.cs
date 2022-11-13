@@ -1,6 +1,7 @@
 ﻿using FilmFeedback.Data;
 using FilmFeedback.Models;
 using FilmFeedback.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -37,11 +38,33 @@ namespace FilmFeedback.Controllers
             return View(catalogFilm);
         }
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult MoreDetailed(int filmId)
         {
-            var film = _context.Films.Where(x => x.Id == filmId).FirstOrDefault();
-            return View(film);
+            var moreDetailedViewModel = new MoreDetailedViewModel();
+            moreDetailedViewModel.film = _context.Films.Where(x => x.Id == filmId).FirstOrDefault();
+            moreDetailedViewModel.Feedbacks = _context.Feedbacks;
+            return View(moreDetailedViewModel);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult MoreDetailed(MoreDetailedViewModel moreDetailedViewModel)
+        {
+            moreDetailedViewModel.Feedbacks = _context.Feedbacks;
+            if (ModelState.IsValid)
+            {
+                var feedback = new Feedback();
+                feedback.feedback = moreDetailedViewModel?.feedback?.feedback;
+                feedback.UserName = User?.Identity?.Name;
+                feedback.Id = _context.Feedbacks.OrderBy(x => x.Id).Last().Id + 1;
+                feedback.FilmName = moreDetailedViewModel?.film?.FilmName;
+                Console.WriteLine(feedback.feedback + " " + feedback.UserName + " " + feedback.Id + " " + feedback.FilmName);
+                _context.Feedbacks.Add(feedback);
+                _context.SaveChanges();
+            }
+            ModelState.Clear();
+            return View(moreDetailedViewModel);
         }
 
         private CatalogViewModels GetFilms()

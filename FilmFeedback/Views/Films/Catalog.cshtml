@@ -24,7 +24,7 @@
     <div class="col-md-4">
     @for (int i = 0; i < Model.Films.Count; i+=3)
     {
-        <form method="post" asp-controller="Films" asp-action="MoreDetailed">
+        <form method="get" asp-controller="Films" asp-action="MoreDetailed">
             <p class="fs-4">@Model.Films[i].FilmName</p>
             <img class="img-thumbnail" src="@Model.Films[i].PhotoUrl" />
             <input asp-for="filmId" type="hidden" value="@Model.Films[i].Id"/>
@@ -38,7 +38,7 @@
     <div class="col-md-4">
     @for (int i = 1; i < Model.Films.Count; i+=3)
     {
-        <form method="post" asp-controller="Films" asp-action="MoreDetailed">
+        <form method="get" asp-controller="Films" asp-action="MoreDetailed">
             <p class="fs-4">@Model.Films[i].FilmName</p>
             <img class="img-thumbnail" src="@Model.Films[i].PhotoUrl" />
             <input asp-for="filmId" type="hidden" value="@Model.Films[i].Id"/>
@@ -51,7 +51,7 @@
     <div class="col-md-4">
     @for (int i = 2; i < Model.Films.Count; i+=3)
     {
-        <form method="post" asp-controller="Films" asp-action="MoreDetailed">
+        <form method="get" asp-controller="Films" asp-action="MoreDetailed">
             <p class="fs-4">@Model.Films[i].FilmName</p>
             <img class="img-thumbnail" src="@Model.Films[i].PhotoUrl" />
             <input asp-for="filmId" type="hidden" value="@Model.Films[i].Id"/>
