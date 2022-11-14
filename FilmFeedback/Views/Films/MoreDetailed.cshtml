@@ -13,12 +13,10 @@
 	<div class="col-md-4">
 		<p class="fs-4">Режиссер</p>
 		<p class="fs-4">Год релиза</p>
-		<p class="fs-4">Оценка на FFB</p>
 	</div>
 	<div class="col-md-4">
 		<p class="fs-4">@Model.film.Director</p>
-		<p class="fs-4">@Model.film.YearRelease</p>
-		<p class="fs-4"></p>		
+		<p class="fs-4">@Model.film.YearRelease</p>	
 	</div>
 </div>
 
@@ -51,17 +49,6 @@
 				<input type="hidden" asp-for="film.YearRelease" value="@Model.film.YearRelease" />
 				<input type="hidden" asp-for="film.DescriptionFilm" value="@Model.film.DescriptionFilm" />
                 <span asp-validation-for="feedback.feedback"></span>
-            </div>
-            <h1></h1>
-            <button class="btn btn-primary">Создать отзыв</button>     
-        </form>
-
-		<h1 class="display-4">Оставить оценку</h1>
-		<form method="post" asp-controller="Films" asp-action="MoreDetailed">
-            <div>
-                <label class="form-label">Введите вашу оценку</label>
-                <input type="text" class="form-control"/>
-                <span></span>
             </div>
             <h1></h1>
             <button class="btn btn-primary">Создать отзыв</button>     
