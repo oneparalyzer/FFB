@@ -38,34 +38,44 @@ namespace FilmFeedback.Controllers
             return View(catalogFilm);
         }
 
-        [HttpGet]
-        public IActionResult MoreDetailed(int filmId)
-        {
-            var moreDetailedViewModel = new MoreDetailedViewModel();
-            moreDetailedViewModel.film = _context.Films.Where(x => x.Id == filmId).FirstOrDefault();
-            moreDetailedViewModel.Feedbacks = _context.Feedbacks;
-            return View(moreDetailedViewModel);
-        }
-
         [HttpPost]
         [Authorize]
-        public IActionResult MoreDetailed(MoreDetailedViewModel moreDetailedViewModel)
+        public IActionResult MoreDetailed(CatalogViewModels catalog)
         {
-            moreDetailedViewModel.Feedbacks = _context.Feedbacks;
-            if (ModelState.IsValid)
+            if (catalog?.film?.Id != -1)
             {
-                var feedback = new Feedback();
-                feedback.feedback = moreDetailedViewModel?.feedback?.feedback;
-                feedback.UserName = User?.Identity?.Name;
-                feedback.Id = _context.Feedbacks.OrderBy(x => x.Id).Last().Id + 1;
-                feedback.FilmName = moreDetailedViewModel?.film?.FilmName;
-                Console.WriteLine(feedback.feedback + " " + feedback.UserName + " " + feedback.Id + " " + feedback.FilmName);
-                _context.Feedbacks.Add(feedback);
-                _context.SaveChanges();
+                catalog.film = _context.Films.Where(x => x.Id == catalog.film.Id).FirstOrDefault();
+                catalog.Feedbacks = _context.Feedbacks;
             }
-            ModelState.Clear();
-            return View(moreDetailedViewModel);
+            else 
+            {
+                catalog.film.Id = -1;
+
+                catalog.Feedbacks = _context.Feedbacks;
+
+                if (catalog.feedback.feedback == null)
+                {
+                    ModelState.AddModelError("", "Поле должно быть заполнено");
+                    return View(catalog);
+                }
+                else
+                {                                    
+                    var feedback = new Feedback
+                    {
+                        Id = _context.Feedbacks.OrderBy(x => x.Id).Last().Id + 1,
+                        UserName = User?.Identity?.Name,
+                        FilmName = catalog?.film?.FilmName,
+                        feedback = catalog?.feedback?.feedback
+                    };
+                    _context.Feedbacks.Add(feedback);
+                    _context.SaveChanges();
+                }
+                
+            }
+            return View(catalog);
         }
+
+        
 
         private CatalogViewModels GetFilms()
 		{

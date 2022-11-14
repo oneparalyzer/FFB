@@ -4,7 +4,7 @@ namespace FilmFeedback.Models
 {
     public class Film
     {
-        public int Id { get; set; }
+        public int Id { get; set; } = -1;
 
         [Required(ErrorMessage = "Поле должно быть заполнено")]
         [Display(Name = "Введите название фильма")]
